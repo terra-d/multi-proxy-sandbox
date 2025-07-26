@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nginx2 - バックエンドサーバー</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e8f4f8;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #27ae60;
+            border-bottom: 3px solid #2ecc71;
+            padding-bottom: 10px;
+        }
+        .server-info {
+            background-color: #f0f9ff;
+            padding: 15px;
+            border-left: 4px solid #2ecc71;
+            margin: 20px 0;
+        }
+        .headers {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .note {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nginx2 - バックエンドサーバー</h1>
+        
+        <div class="server-info">
+            <h2>サーバー情報</h2>
+            <p><strong>サーバー名:</strong> Nginx2</p>
+            <p><strong>役割:</strong> バックエンドサーバー</p>
+            <p><strong>ポート:</strong> 8081（直接アクセス）/ 80（内部）</p>
+        </div>
+
+        <h2>このページについて</h2>
+        <p>これはNginx2（バックエンドサーバー）が提供しているHTMLページです。</p>
+        <p>通常、このページはNginx1を経由してアクセスされますが、ポート8081で直接アクセスすることも可能です。</p>
+
+        <div class="headers">
+            <h3>プロキシ経由でアクセスした場合に受信するヘッダー</h3>
+            <ul>
+                <li><code>X-Real-IP</code> - 実際のクライアントIPアドレス</li>
+                <li><code>X-Forwarded-For</code> - プロキシチェーン情報</li>
+                <li><code>X-Forwarded-Proto</code> - 元のプロトコル（http/https）</li>
+                <li><code>X-Proxy-Pass</code> - 経由したプロキシサーバー（nginx1）</li>
+            </ul>
+        </div>
+
+        <h2>利用可能なエンドポイント</h2>
+        <ul>
+            <li><a href="/health">/health</a> - ヘルスチェック</li>
+            <li><a href="/debug">/debug</a> - デバッグ情報（ヘッダー情報含む）</li>
+            <li><a href="/api">/api</a> - JSONレスポンス例</li>
+        </ul>
+
+        <p class="note">注：このページはNginx2のローカルファイルから配信されています。</p>
+    </div>
+</body>
+</html>
