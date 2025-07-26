@@ -59,6 +59,7 @@
 - Docker Engine 20.10以上
 - Docker Compose v2.0以上
 - curl（テスト用）
+- K6（負荷テスト用）
 - Apache Bench (ab) 負荷テスト用（オプション）
 
 ## クイックスタート
@@ -88,15 +89,16 @@ docker compose logs -f
 
 ```
 multi-proxy-sandbox/
-├── docker/              # Dockerコンテナ設定
-│   ├── nginx1/         # 1つ目のNginxコンテナ設定
-│   └── nginx2/         # 2つ目のNginxコンテナ設定
-├── compose.yml         # Docker Compose設定
 ├── configs/            # Nginx設定ファイル
-├── logs/               # ログファイル
-├── scripts/            # テスト・ユーティリティスクリプト
-├── docs/               # 追加ドキュメント
-└── README.md           # このファイル
+│   ├── nginx1/        # nginx1（プロキシサーバー）設定
+│   └── nginx2/        # nginx2（バックエンドサーバー）設定
+├── html/              # 静的HTMLファイル
+│   ├── nginx1/        # nginx1用HTML
+│   └── nginx2/        # nginx2用HTML + テストファイル
+├── k6-tests/          # K6負荷テストスクリプト
+├── logs/              # ログファイル（自動生成）
+├── compose.yml        # Docker Compose設定
+└── README.md          # このファイル
 ```
 
 ## 設定
@@ -127,15 +129,48 @@ curl -v http://localhost:8080
 curl -I http://localhost:8080
 ```
 
-### 負荷テスト
+### K6負荷テスト
+事前にDockerコンテナを起動してから実行：
 ```bash
-ab -n 1000 -c 10 http://localhost:8080/
+docker compose up -d
 ```
 
-### カスタムテストスクリプト
+#### 一括テスト実行
+**Linux/Mac:**
 ```bash
-./scripts/test-headers.sh
-./scripts/test-load-balancing.sh
+./k6-tests/run-tests.sh
+```
+
+**Windows (CMD):**
+```cmd
+k6-tests\run-tests.bat
+```
+
+#### 個別テスト実行
+```bash
+# ダウンロードテスト（nginx1経由）
+k6 run k6-tests/download-nginx1.js
+
+# ダウンロードテスト（nginx2直接）
+k6 run k6-tests/download-nginx2.js
+
+# アップロードテスト（nginx1経由）
+k6 run k6-tests/upload-nginx1.js
+
+# アップロードテスト（nginx2直接）
+k6 run k6-tests/upload-nginx2.js
+```
+
+#### K6テスト設定
+- **VU数**: 2（同時接続ユーザー）
+- **実行時間**: 2分間
+- **RPS**: 10（秒間リクエスト数）
+- **ファイルサイズ**: 100KB固定
+- **テスト結果**: `k6-tests/results/`に保存
+
+### Apache Bench負荷テスト（オプション）
+```bash
+ab -n 1000 -c 10 http://localhost:8080/
 ```
 
 ## よく使うコマンド

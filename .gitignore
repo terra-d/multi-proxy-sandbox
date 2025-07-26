@@ -2,6 +2,9 @@
 logs/
 *.log
 
+# K6 test results
+k6-tests/results/
+
 # Docker volumes
 /volumes/
 
