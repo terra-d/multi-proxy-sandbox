@@ -3,7 +3,7 @@ import { check, sleep } from 'k6';
 
 export let options = {
   vus: 2, // 2 virtual users
-  duration: '2m', // 2分間実行
+  duration: '1m', // 1分間実行
   rps: 10, // 秒間10リクエスト
 };
 

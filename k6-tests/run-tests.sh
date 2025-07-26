@@ -11,7 +11,7 @@ PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 cd "${PROJECT_ROOT}"
 
 echo "=== K6負荷テスト開始 ==="
-echo "テスト設定: VU=2, 実行時間=2分, RPS=10"
+echo "テスト設定: VU=2, 実行時間=1分, RPS=10"
 echo "スクリプトディレクトリ: ${SCRIPT_DIR}"
 echo "プロジェクトルート: ${PROJECT_ROOT}"
 echo "現在のディレクトリ: $(pwd)"
