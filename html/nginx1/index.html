@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nginx1 - プロキシサーバー</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .server-info {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+        }
+        .note {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nginx1 - プロキシサーバー</h1>
+        
+        <div class="server-info">
+            <h2>サーバー情報</h2>
+            <p><strong>サーバー名:</strong> Nginx1</p>
+            <p><strong>役割:</strong> プロキシサーバー（フロントエンド）</p>
+            <p><strong>ポート:</strong> 8080</p>
+        </div>
+
+        <h2>このページについて</h2>
+        <p>これはNginx1（プロキシサーバー）が直接提供しているHTMLページです。</p>
+        <p>通常、リクエストはNginx2（バックエンドサーバー）にプロキシされますが、このパスは例外として設定されています。</p>
+
+        <h2>利用可能なエンドポイント</h2>
+        <ul>
+            <li><a href="/health">/health</a> - ヘルスチェック</li>
+            <li><a href="/debug">/debug</a> - デバッグ情報</li>
+            <li><a href="/proxy">その他のパス</a> - Nginx2にプロキシされます</li>
+        </ul>
+
+        <p class="note">注：このページはNginx1のローカルファイルから直接配信されています。</p>
+    </div>
+</body>
+</html>
