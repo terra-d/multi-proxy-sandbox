@@ -21,7 +21,8 @@ services:
       - "8081:80"
     volumes:
       - ./configs/nginx2/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./html/nginx2:/usr/share/nginx/html:ro
+      - ./html/nginx2:/usr/share/nginx/html
+      - ./temp/nginx2:/tmp/nginx_uploads
       - ./logs/nginx2:/var/log/nginx
     networks:
       - proxy-network
